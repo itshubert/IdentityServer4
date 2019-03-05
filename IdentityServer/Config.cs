@@ -71,14 +71,12 @@ namespace IdentityServer
 
                     RedirectUris =
                     {
-                        "http://localhost:5002/index.html",
-                        "http://localhost:5002/callback.html",
-                        "http://localhost:5002/silent.html",
-                        "http://localhost:5002/popup.html",
+                        "http://localhost:4200/signin-oidc",
+                        "http://localhost:4200/signout-callback-oidc"
                     },
 
-                    PostLogoutRedirectUris = { "http://localhost:5002/index.html" },
-                    AllowedCorsOrigins = { "http://localhost:5002" },
+                    PostLogoutRedirectUris = { "http://localhost:4200/signout-callback-oidc" },
+                    AllowedCorsOrigins = { "http://localhost:4200" },
 
                     AllowedScopes = { "openid", "profile", "api1" }
                 }
