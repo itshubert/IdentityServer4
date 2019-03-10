@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using IdentityServer4;
+using IdentityServer.Models;
 
 namespace IdentityServer
 {
@@ -36,6 +37,8 @@ namespace IdentityServer
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
+            services.AddDbContext<Is4context>(options => options.UseSqlServer(connectionString));
+
             var identityServer = services.AddIdentityServer(options =>
             {
                 options.Events.RaiseErrorEvents = true;
@@ -43,7 +46,7 @@ namespace IdentityServer
                 options.Events.RaiseFailureEvents = true;
                 options.Events.RaiseSuccessEvents = true;
             })
-                .AddTestUsers(TestUsers.Users)
+                //.AddTestUsers(TestUsers.Users)
                 // this adds the config data from DB (clients, resources, CORS)
                 .AddConfigurationStore(options =>
                 {
